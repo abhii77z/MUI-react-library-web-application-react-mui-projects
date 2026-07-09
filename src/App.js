@@ -59,7 +59,7 @@ function App() {
                 sx={{ width: 34, height: 34, ml: 1, bgcolor: "primary.main", fontSize: "0.9rem" }}
                 alt="Developer Profile"
               >
-                JD
+                AC
               </Avatar>
             </Box>
           </Toolbar>

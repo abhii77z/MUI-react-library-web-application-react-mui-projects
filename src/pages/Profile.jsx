@@ -14,8 +14,8 @@ import { PhotoCamera } from "@mui/icons-material";
 
 const Profile = () => {
   const [profile, setProfile] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
+    name: "Abhijith Chandran",
+    email: "abhijith.chandran@example.com",
     role: "Full Stack Developer",
     bio: "Passionate Full Stack Developer who loves building modern web applications using React, Node.js, and Python. Open to collaborating on open-source projects.",
   });
