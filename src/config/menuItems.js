@@ -1,8 +1,9 @@
-import { Home, Info, Contacts, People, Settings, Help, AccountCircle, Security } from "@mui/icons-material";
+import { Home, Info, Contacts, People, Settings, Help, AccountCircle, Security, Work } from "@mui/icons-material";
 
 const menuItems = [
   { text: "Home", icon: <Home />, path: "/" },
   { text: "About", icon: <Info />, path: "/about" },
+  { text: "Projects", icon: <Work />, path: "/projects" },
   { text: "Contact", icon: <Contacts />, path: "/contact" },
   { text: "Users", icon: <People />, path: "/users" },
   {
