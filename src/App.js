@@ -14,7 +14,7 @@ import { Notifications, Settings as SettingsIcon } from "@mui/icons-material";
 
 function App() {
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#f8f9fa" }}>
+    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "background.default" }}>
       <Sidebar />
       <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
         <AppBar
