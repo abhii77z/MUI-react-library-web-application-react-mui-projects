@@ -1,0 +1,9 @@
+.about-container {
+  padding: 80px;
+  background-color: #fff8e1;
+  min-height: 90vh;
+}
+
+.about-container h4 {
+  color: #ff6f00;
+}
