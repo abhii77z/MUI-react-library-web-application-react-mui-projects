@@ -121,7 +121,10 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
             width: DRAWER_WIDTH,
             borderRight: "1px solid",
             borderColor: "divider",
-            background: "linear-gradient(180deg, #fff0f3 0%, #ffffff 100%)", // Milky Rose theme
+            background: (theme) =>
+              theme.palette.mode === "light"
+                ? "linear-gradient(180deg, #fff0f3 0%, #ffffff 100%)"
+                : "linear-gradient(180deg, #1e1e1e 0%, #121212 100%)",
           },
         }}
       >
@@ -141,7 +144,10 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
             width: DRAWER_WIDTH,
             borderRight: "1px solid",
             borderColor: "divider",
-            background: "linear-gradient(180deg, #fff0f3 0%, #ffffff 100%)", // Milky Rose theme
+            background: (theme) =>
+              theme.palette.mode === "light"
+                ? "linear-gradient(180deg, #fff0f3 0%, #ffffff 100%)"
+                : "linear-gradient(180deg, #1e1e1e 0%, #121212 100%)",
           },
         }}
       >
