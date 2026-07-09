@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -10,12 +10,18 @@ import Profile from "./pages/Profile";
 import Security from "./pages/Security";
 import Help from "./pages/Help";
 import { Box, AppBar, Toolbar, Typography, Avatar, IconButton } from "@mui/material";
-import { Notifications, Settings as SettingsIcon } from "@mui/icons-material";
+import { Notifications, Settings as SettingsIcon, Menu as MenuIcon } from "@mui/icons-material";
 
 function App() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   return (
     <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "background.default" }}>
-      <Sidebar />
+      <Sidebar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
       <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
         <AppBar
           position="static"
@@ -28,9 +34,20 @@ function App() {
           }}
         >
           <Toolbar sx={{ justifyContent: "space-between" }}>
-            <Typography variant="h6" fontWeight="600" color="text.primary">
-              Developer Dashboard
-            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ mr: 2, display: { md: "none" } }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" fontWeight="600" color="text.primary">
+                Developer Dashboard
+              </Typography>
+            </Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <IconButton size="small">
                 <Notifications />
@@ -47,7 +64,7 @@ function App() {
             </Box>
           </Toolbar>
         </AppBar>
-        <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
+        <Box component="main" sx={{ flexGrow: 1, p: { xs: 2.5, md: 4 } }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

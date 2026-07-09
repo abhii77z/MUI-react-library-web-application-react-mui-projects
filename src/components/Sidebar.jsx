@@ -16,7 +16,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const DRAWER_WIDTH = 260;
 
-const Sidebar = () => {
+const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
   const [openMenus, setOpenMenus] = useState({});
   const location = useLocation();
 
@@ -38,7 +38,13 @@ const Sidebar = () => {
           <ListItemButton
             component={item.path ? Link : "div"}
             to={item.path || undefined}
-            onClick={item.subItems ? () => handleClick(item.text) : null}
+            onClick={
+              item.subItems
+                ? () => handleClick(item.text)
+                : () => {
+                    if (mobileOpen) handleDrawerToggle();
+                  }
+            }
             sx={{
               margin: "4px 12px",
               borderRadius: "8px",
@@ -81,22 +87,8 @@ const Sidebar = () => {
     });
   };
 
-  return (
-    <Drawer
-      variant="permanent"
-      anchor="left"
-      sx={{
-        width: DRAWER_WIDTH,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: DRAWER_WIDTH,
-          boxSizing: "border-box",
-          borderRight: "1px solid",
-          borderColor: "divider",
-          background: "linear-gradient(180deg, #fafafa 0%, #f4f6f8 100%)",
-        },
-      }}
-    >
+  const drawerContent = (
+    <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <Box sx={{ p: 3, display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Typography variant="h6" fontWeight="bold" color="primary.main" sx={{ letterSpacing: 1 }}>
           DEV PORTFOLIO
@@ -106,10 +98,56 @@ const Sidebar = () => {
         </Typography>
       </Box>
       <Divider sx={{ mb: 2 }} />
-      <List sx={{ px: 1 }}>
+      <List sx={{ px: 1, flexGrow: 1 }}>
         {renderMenuItems(menuItems)}
       </List>
-    </Drawer>
+    </Box>
+  );
+
+  return (
+    <>
+      {/* Mobile Drawer (Temporary) */}
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: DRAWER_WIDTH,
+            borderRight: "1px solid",
+            borderColor: "divider",
+            background: "linear-gradient(180deg, #fff0f3 0%, #ffffff 100%)", // Milky Rose theme
+          },
+        }}
+      >
+        {drawerContent}
+      </Drawer>
+
+      {/* Desktop Drawer (Permanent) */}
+      <Drawer
+        variant="permanent"
+        open
+        sx={{
+          display: { xs: "none", md: "block" },
+          width: DRAWER_WIDTH,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: DRAWER_WIDTH,
+            borderRight: "1px solid",
+            borderColor: "divider",
+            background: "linear-gradient(180deg, #fff0f3 0%, #ffffff 100%)", // Milky Rose theme
+          },
+        }}
+      >
+        {drawerContent}
+      </Drawer>
+    </>
   );
 };
 
